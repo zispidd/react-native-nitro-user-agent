@@ -1,0 +1,17 @@
+{
+  "cxxNamespace": ["nitrouseragent"],
+  "ios": {
+    "iosModuleName": "NitroUserAgent"
+  },
+  "android": {
+    "androidNamespace": ["nitrouseragent"],
+    "androidCxxLibName": "nitrouseragent"
+  },
+  "autolinking": {
+    "NitroUserAgent": {
+      "swift": "NitroUserAgent",
+      "kotlin": "NitroUserAgent"
+    }
+  },
+  "ignorePaths": ["node_modules"]
+}
