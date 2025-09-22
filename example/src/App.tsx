@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SafeAreaView, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
 
 // импортируем наш модуль
-import { nitroUserAgent } from 'react-native-nitro-user-agent';
+import { getUserAgent } from 'react-native-nitro-user-agent';
 
 export default function App() {
   const [ua, setUa] = useState<string>('Loading...');
@@ -10,7 +10,7 @@ export default function App() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await nitroUserAgent.getUserAgent();
+        const result = await getUserAgent();
         setUa(result);
       } catch (e: any) {
         setUa(`Error: ${e?.message ?? String(e)}`);
