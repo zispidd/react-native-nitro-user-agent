@@ -9,8 +9,8 @@
   },
   "autolinking": {
     "NitroUserAgent": {
-      "swift": "NitroUserAgent",
-      "kotlin": "NitroUserAgent"
+      "swift": "HybridNitroUserAgent",
+      "kotlin": "HybridNitroUserAgent"
     }
   },
   "ignorePaths": ["node_modules"]

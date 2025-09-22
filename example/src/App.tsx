@@ -1,20 +1,55 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-nitro-user-agent';
+import { useEffect, useState } from 'react';
+import { SafeAreaView, Text, StyleSheet, ScrollView, StatusBar } from 'react-native';
 
-const result = multiply(3, 7);
+// импортируем наш модуль
+import { nitroUserAgent } from 'react-native-nitro-user-agent';
 
 export default function App() {
+  const [ua, setUa] = useState<string>('Loading...');
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const result = await nitroUserAgent.getUserAgent();
+        setUa(result);
+      } catch (e: any) {
+        setUa(`Error: ${e?.message ?? String(e)}`);
+      }
+    })();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" />
+      <ScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.title}>Nitro User-Agent Example</Text>
+        <Text selectable style={styles.agent}>
+          {ua}
+        </Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
-});
+  scroll: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    padding: 24,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  agent: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: '#333',
+  },
+})
